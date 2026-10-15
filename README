@@ -1,0 +1,9 @@
+# Reflection
+## Saving time with AI
+. AI saved a lot of time by building the basic logic and generating the started code.
+
+## AI bug identified and fixed
+. I encountered an error occurred because the variable/element was being even before it was grabbed from the DOM causes code to crash. Another error occurred as eventlistener was being added to the element even before it was generated. I fixed both the buys by identifying the snipped of code causing the issue and calling the functions at the correct places.
+
+##  A code snippet refactored
+For ensuring clarity of the code, I made few changes in the nextcardbtn's eventlistener to keep it simple and easy to understand to avoid complexity.
