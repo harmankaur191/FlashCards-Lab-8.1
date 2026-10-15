@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards App - Complete Edition</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">Flashcards App</h1>
+      <button class="btn btn-primary" id="new-deck-btn" type="button" aria-label="Create a new deck">+ New Deck</button>
+    </header>
+
+    <!-- Sidebar for Decks -->
+    <nav class="app-sidebar" aria-label="Deck Navigation">
+      <h2 class="sidebar-heading">Decks</h2>
+      <ul class="deck-list" id="deck-list"></ul>
+    </nav>
+
+    <!-- Main Area -->
+    <main class="app-main">
+      <section class="card-workspace" aria-labelledby="active-deck-title">
+        <div class="workspace-header">
+          <div class="deck-header-info">
+            <h2 id="active-deck-title" class="active-deck-title">Loading...</h2>
+            <span id="card-counter" class="card-counter" aria-live="polite">Card 0 of 0</span>
+          </div>
+          
+          <div class="deck-toolbar">
+            <input id="card-search" class="search-input" type="search" placeholder="Search cards in deck...">
+            <div class="toolbar-actions">
+              <button class="btn" id="shuffle-btn" type="button" aria-label="Shuffle cards">Shuffle</button>
+              <button class="btn btn-primary" id="new-card-btn" type="button" aria-label="Create a new card">+ New Card</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Card Area Container -->
+        <div class="flashcard-scene">
+          <div class="flashcard" id="flashcard" role="region" aria-label="Flashcard viewer" tabindex="0">
+            <!-- Front Face -->
+            <div class="card-face card-front">
+              <div class="card-top-actions" id="card-top-actions">
+                <button class="icon-btn" id="edit-card-btn" title="Edit Card" aria-label="Edit card">✏️</button>
+                <button class="icon-btn delete" id="delete-card-btn" title="Delete Card" aria-label="Delete card">🗑️</button>
+              </div>
+              <span class="card-side-indicator">Question (Front)</span>
+              <div class="card-content" id="card-front-content">Select a deck to begin.</div>
+              <span class="card-hint">Click or press Space to flip card</span>
+            </div>
+            <!-- Back Face -->
+            <div class="card-face card-back">
+              <span class="card-side-indicator">Answer (Back)</span>
+              <div class="card-content" id="card-back-content"></div>
+              <span class="card-hint">Click or press Space to flip back</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="card-controls">
+          <button class="btn control-btn" id="prev-card-btn" type="button" aria-label="Previous card">Previous</button>
+          <button class="btn btn-primary control-btn" id="flip-card-btn" type="button" aria-label="Flip card">Flip Card</button>
+          <button class="btn control-btn" id="next-card-btn" type="button" aria-label="Next card">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>&copy; 2026 Flashcards App. State saved automatically to LocalStorage.</p>
+    </footer>
+  </div>
+
+  <!-- Deck Modal -->
+  <div class="modal-backdrop" id="deck-modal" role="dialog" aria-modal="true" aria-labelledby="deck-modal-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="deck-modal-title">Create New Deck</h3>
+        <button class="icon-btn" id="deck-modal-close-btn" aria-label="Close modal">✕</button>
+      </div>
+      <form id="deck-form">
+        <input type="hidden" id="deck-id-input">
+        <div class="form-group">
+          <label class="form-label" for="deck-name-input">Deck Name</label>
+          <input class="form-input" type="text" id="deck-name-input" required placeholder="e.g., Python Fundamentals">
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="deck-modal-cancel-btn" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save Deck</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Card Modal -->
+  <div class="modal-backdrop" id="card-modal" role="dialog" aria-modal="true" aria-labelledby="card-modal-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="card-modal-title">Create New Card</h3>
+        <button class="icon-btn" id="card-modal-close-btn" aria-label="Close modal">✕</button>
+      </div>
+      <form id="card-form">
+        <input type="hidden" id="card-index-input">
+        <div class="form-group">
+          <label class="form-label" for="card-q-input">Front (Question)</label>
+          <textarea class="form-textarea" id="card-q-input" required placeholder="Enter front of card..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="card-a-input">Back (Answer)</label>
+          <textarea class="form-textarea" id="card-a-input" required placeholder="Enter back of card..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="card-modal-cancel-btn" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</body>
+</html>
